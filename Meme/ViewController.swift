@@ -116,7 +116,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
-        
+        guard bottomTextField.isEditing else{
+            return
+        }
         //        keyboard wil show function & to shift view frame
         if self.view.frame.origin.y == 0 {
             self.view.frame.origin.y -= getKeyboardHeight(notification)
@@ -217,11 +219,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         
-        
-        self.pickImageViewer.image = nil
-        self.topTextField.text = "TOP"
-        self.bottomTextField.text = "BOTTOM"
-        self.shareButton.isEnabled = false
+        navigationController?.popViewController(animated: true)
     }
     
     
